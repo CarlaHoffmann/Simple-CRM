@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +24,7 @@ export class DialogAddUserComponent {
   birthDate!: Date;
   loading = false;
 
-  constructor(private firestore: Firestore) {}
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, private firestore: Firestore) {}
 
   onNoClick() {}
 
@@ -37,6 +37,7 @@ export class DialogAddUserComponent {
     addDoc(usersCollection, this.user.toJSON()).then(result => {
       this.loading = false;
       console.log('user added', result);
+      this.dialogRef.close();
     });
   }
 }
