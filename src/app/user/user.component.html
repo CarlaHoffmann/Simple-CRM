@@ -6,19 +6,16 @@
                 <th>E-mail</th>
                 <th>City</th>
             </tr>
-            <tr>
-                <td>a</td>
-                <td>d</td>
-                <td>g</td>
-            </tr>
-            <tr>
-                <td>a</td>
-                <td>d</td>
-                <td>g</td>
-            </tr>
+            @for (user of allUsers; track user.firstName) {
+                <!-- <tr routerlink="/user/ + user.id"> -->
+                <tr (click)="goToUser(user.id)">
+                    <td>{{ user.firstName }} {{ user.lastName }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>{{ user.city }}</td>
+                </tr>
+            }
         </table>
     </mat-card-content>
-  
 </mat-card>
 
 <button (click)="openDialog()" class="add-user-btn" mat-fab color="primary" aria-label="Add user" matTooltip="Add user">
