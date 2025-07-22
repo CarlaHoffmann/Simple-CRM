@@ -20,7 +20,7 @@
     <div>
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Birth date</mat-label>
-        <input [disabled]="loading" [(ngModel)]="birthDate" matInput [matDatepicker]="picker">
+        <input [disabled]="loading" [(ngModel)]="user.birthDate" matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -33,24 +33,6 @@
       </mat-form-field>
     </div>
 
-    <div>
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Street + House No.</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="Address">
-      </mat-form-field>
-    </div>
-
-    <div class="name-fields">
-      <mat-form-field class="mr-16" appearance="outline">
-        <mat-label>Zip code</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City">
-      </mat-form-field>
-    </div>
   </mat-dialog-content>
 
   <mat-dialog-actions>
