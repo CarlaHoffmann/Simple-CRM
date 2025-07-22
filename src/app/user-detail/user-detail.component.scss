@@ -4,13 +4,13 @@
     color: white;
 }
 
-mat-card-content {
+.details {
     min-height: 250px;
     display: flex;
     align-items: flex-end;
 }
 
-img {
+.user-img {
     width: 100px;
     height: 100px;
     // border-radius: 100%;
