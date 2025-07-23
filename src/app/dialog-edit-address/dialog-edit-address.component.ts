@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { User } from '../../models/user.class';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dialog-edit-address',
@@ -19,22 +20,24 @@ export class DialogEditAddressComponent {
   user!: User;
   loading = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>) {}
+  constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>, private firestore: Firestore) {}
 
   onNoClick() {
-      this.dialogRef.close();
-    }
+    this.dialogRef.close();
+  }
   
   saveUser() {
-    // this.user.birthDate = this.birthDate.getTime();
-    // console.log('current user is', this.user);
-    // this.loading = true;
+    console.log('current user is', this.user);
+    this.loading = true;
 
-    // const usersCollection = collection(this.firestore, 'users');
-    // addDoc(usersCollection, this.user.toJSON()).then(result => {
+    const userDocRef = doc(this.firestore, 'users', this.user.id);
+    updateDoc(userDocRef, this.user.toJSON()).then((result) => {
+      this.loading = false;
+      console.log('user updated', result);
+      this.dialogRef.close();
+    // }).catch(error => {
+    //   console.error('Update failed:', error);
     //   this.loading = false;
-    //   console.log('user added', result);
-    //   this.dialogRef.close();
-    // });
+    });
   }
 }
